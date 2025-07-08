@@ -6,5 +6,5 @@ git branch -M main
 git add .
 date=$(date '+%Y-%m-%d %H:%M:%S')
 git commit -m "Commit at $(date) "
-git push -u origin main
+git push -uf origin main
 
