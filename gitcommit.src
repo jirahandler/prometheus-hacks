@@ -1,0 +1,10 @@
+#setupATLAS -q
+#lsetup git
+git init
+git remote add origin https://github.com/jirahandler/prometheus-hacks.git
+git branch -M main
+git add .
+date=$(date '+%Y-%m-%d %H:%M:%S')
+git commit -m "Commit at $(date) "
+git push -u origin main
+
