@@ -52,7 +52,7 @@ $CONDA_PREFIX/bin/cmake \
   -DCMAKE_POLICY_VERSION_MINIMUM=4.0  \
   -DPython_ROOT_DIR=$CONDA_PREFIX      \
   ../source
-make -j($nproc) && make install
+make -j$nproc && make install
 ```
 Don't do sudo make install; not needed because it installas stuff into system bin path.
 
