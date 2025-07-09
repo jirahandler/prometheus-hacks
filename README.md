@@ -4,7 +4,7 @@
 
 First we need a consistent conda environment for the installation that follows
 
-### STEP O: Install pre-req \& Download Anaconda
+### STEP O: Install pre-reqs \& Download Anaconda
 
 #### Written for Ubuntu 22.04 LTS / System 76 POP-OS
 
