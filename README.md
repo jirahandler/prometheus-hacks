@@ -45,7 +45,7 @@ cd source
 git checkout b5ab876
 ```
 
-Now we must be careful to compile with thr proper `CMakeLists.txt` file inside
+Now we must be careful to compile with the proper `CMakeLists.txt` file inside
 `~/lepinj/source`
 
 Use the `CMakeLists.txt` provided with this github repo; the default **LeptonInjector** doesn't compile `EarthModelService`
@@ -131,27 +131,21 @@ ls PREM_mmc.dat
 # IF PREM_mmc.dat doesn't show up, do, to have a PREM card to run (for example)
 cp PREM_south_pole.dat PREM_mmc.dat
 ```
-Next, go to the examples directory inside prometheus to run the sim.
-First you gotta copy over the revamped simulation test script from this repo.
+Next, go to the `examples` directory inside `~/prometheus` to run the sim.
+First you gotta copy over the revamped simulation test script from this repo (see in the bash code below).
 
-Ensure that your `conda environment` is active for good measure.
+Ensure that your `conda environment` is active.
 
 ```bash=
 cd ~/prometheus/examples/
 cp ~/prometheus-hacks/test-sim.py .
 python3 test-sim.py
  ```
+The sim may take about 10 minutes with 100 events on less powerful machines and will create some tables.
 
-This will create a folder `output` in `~/prometheus/examples/` with `h5 & parquet` files on successful run.
+This will create a folder called `output` in `~/prometheus/examples/` with `h5 & parquet` files on successful run.
 
-Remember Prometheus must be installed in each terminal `tty` session that you're working.
-
-If not, do, before you run the simulation each time in a new terminal, after activating the conda environment:
-
-```bash=
-cd ~/prometheus
-pip install -e .
-```
+Remember, Prometheus package must be installed in each terminal `tty` session that you're working on.
 
 
 
