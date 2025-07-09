@@ -4,13 +4,32 @@
 
 First we need a consistent conda environment for the installation that follows
 
+### STEP O: Install pre-req \& Download Anaconda
+
+#### Made for Ubuntu environment
+
+Please follow instructions from: [Anaconda3 Installation for Linux](https://www.anaconda.com/docs/getting-started/anaconda/install#macos-linux-installation:navigator-dependencies)
+
+Be advised that the download is around 1 Gig
+
+```bash=
+
+sudo apt install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+wget https://repo.anaconda.com/archive/Anaconda3-2025.06-0-Linux-x86_64.sh
+bash Anaconda3-2025.06-0-Linux-x86_64.sh
+# To refresh paths installed by Anaconda
+source ~/.bashrc
+```
+
+Main course post conda installation:
+
 ```bash=
 conda create --name prom_env -c conda-forge python=3.11
 conda activate prom_env
 conda install -c conda-forge boost boost-cpp h5py matplotlib photospline suitesparse cfitsio cmake ipykernel jupyter
 python3 -m pip install proposal
 ```
-Next, time to download & install the packages
+Up next, time to download & install the packages
 
 ## Lepton Injector
 
@@ -33,7 +52,9 @@ Use the `CMakeLists.txt` provided with this github repo; the default **LeptonInj
 
 ```bash=
 cd ~/lepinj/source/
-vim CMakeLists.txt
+rm -rf CMakeLists.txt
+git clone https://github.com/jirahandler/prometheus-hacks ~/prometheus-hacks
+cp ~/prometheus-hacks/CMakeLists.txt .
 cd ..
 #The step above is used to fix the CMake file for proper shared object compilation
 mkdir build install
@@ -63,7 +84,7 @@ cd ~
 git clone https://github.com/Harvard-Neutrino/prometheus.git
 cd prometheus
 git checkout e072a5f
-pip install -e .
+python3 -m pip install -e .
 ```
 We need to make some edits inside the prometheus package. It needs a line replacement.
 
@@ -94,24 +115,39 @@ earth_model_dir = "/".join(path_dict["earth model location"].split("/")[:-2]) + 
 ```
 Then, do the following:
 
+Install it again after edits on the same terminal session as below.
+Also needs to be installed on every new shell you're working with and on every subsequent change(s) in the same active shell
+
+```bash=
+cd ~/prometheus/
+python3 -m pip install -e .
+```
+
+Time to check the  PREM cards.
+
 ```bash=
 cd ~/prometheus/resources/earthparams/densities/
 ls PREM_mmc.dat
 # IF PREM_mmc.dat doesn't show up, do, to have a PREM card to run (for example)
 cp PREM_south_pole.dat PREM_mmc.dat
 ```
-Next, go to the examples directory inside prometheus,
- `cd ~/prometheus/examples/`
+Next, go to the examples directory inside prometheus to run the sim.
+First you gotta copy over the revamped simulation test script from this repo.
 
-Ensure that your `conda environment` is active,
-copy the python script from this repo (`test-sim.py` to `~/prometheus/examples/`) and finally run the python script  in this repo as
-`python3 test-sim.py` within the `examples` directory.
+Ensure that your `conda environment` is active for good measure.
+
+```bash=
+cd ~/prometheus/examples/
+cp ~/prometheus-hacks/test-sim.py .
+python3 test-sim.py
+ ```
 
 This will create a folder `output` in `~/prometheus/examples/` with `h5 & parquet` files on successful run.
 
-Prometheus must be isntalled in the same terminal `tty` session.
+Remember Prometheus must be installed in each terminal `tty` session that you're working.
 
-If not, do, before you run the simulation:
+If not, do, before you run the simulation each time in a new terminal, after activating the conda environment:
+
 ```bash=
 cd ~/prometheus
 pip install -e .
