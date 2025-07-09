@@ -6,7 +6,7 @@ First we need a consistent conda environment for the installation that follows
 
 ### STEP O: Install pre-req \& Download Anaconda
 
-#### Made for Ubuntu environment
+#### Written for Ubuntu 22.04 LTS / System 76 POP-OS
 
 Please follow instructions from: [Anaconda3 Installation for Linux](https://www.anaconda.com/docs/getting-started/anaconda/install#macos-linux-installation:navigator-dependencies)
 
