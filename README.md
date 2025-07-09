@@ -55,12 +55,12 @@ cd ~/lepinj/source/
 rm -rf CMakeLists.txt
 git clone https://github.com/jirahandler/prometheus-hacks ~/prometheus-hacks
 cp ~/prometheus-hacks/CMakeLists.txt .
-cd ..
 #The step above is used to fix the CMake file for proper shared object compilation
+cd ..
 mkdir build install
 ```
 
-In the same conda environment, issue these commands:
+In the same conda environment (terminal), issue these commands:
 
 ```bash=
 cd ~/lepinj/build
@@ -75,7 +75,7 @@ $CONDA_PREFIX/bin/cmake \
   ../source
 make -j$nproc && make install
 ```
-Don't do sudo make install; not needed because it installas stuff into system bin path.
+Please don't do sudo make install; not needed because it installs stuff into system bin path.
 
 ## Installing Prometheus
 
